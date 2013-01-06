@@ -95,6 +95,7 @@ blockquote {margin-left:2.6667em;margin-right:2.6667em;font-style:italic;}
 .item-pagination {overflow:hidden;width:512px; margin-bottom:1.5em;border-top:1px solid #ccc; padding-top:1.5em;}
 .item-pagination li.previous {display:block;float:left; width:48%;}
 .item-pagination li.next {float:right; display:block;width: 48%; text-align:right}
+.item-pagination-upper {border-top: 0px; padding-top: 0px; margin-top: 0px;}
 
 /* Forms */
 legend {font-size:2em;}
