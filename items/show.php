@@ -26,14 +26,24 @@
     <?php echo rcb_custom_show_item_metadata(); ?>
 
    <!-- this is where maps will go -->
-   <?php $coverage = item('Dublin Core', 'Coverage', array('delimiter' => ', ')); 
+   <?php 
+      $coverage = item('Dublin Core', 'Coverage', array('delimiter' => '|')); 
       if ($coverage != ''):
+         $covcount = 0;
+         $coverages = explode("|", $coverage);
+         
+         reset($coverages);
+         while (list(, $value) = each($coverages)):
+            $covcount = $covcount + 1;
+            $mapname = "map_canvas_" . $covcount;
    ?>
-   <div id="map_canvas" style="width: 500px; height: 300px"></div>
-   <script type="text/javascript">
-      codeAddress("<? echo $coverage; ?>");
+   <div id="<?php echo $mapname; ?>" style="width: 500px; height: 300px"></div>
+   <script type="text/javascript"> 
+      codeAddress("<?php echo $mapname; ?>", "<?php echo $value; ?>");
       </script>
-   <?php endif; ?>
+   <?php 
+         endwhile;
+      endif; ?>
    
     <?php if (item_has_tags()): ?>
     <div id="item-tags" class="element">

@@ -26,16 +26,10 @@
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
       var geocoder;
-      var map = null;
       
-      function initialize() {
-        geocoder = new google.maps.Geocoder();
-      }
-
-      function codeAddress(address) {
-        //var address = document.getElementById('address').value;
+      function codeAddress(mapdiv, address) {
         if (geocoder == null)
-          initialize();
+          geocoder = new google.maps.Geocoder();
         geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             var mapOptions = {
@@ -43,7 +37,7 @@
               center: results[0].geometry.location,
               mapTypeId: google.maps.MapTypeId.ROADMAP
             }
-            map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+            var map = new google.maps.Map(document.getElementById(mapdiv), mapOptions);
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
