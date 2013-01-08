@@ -130,6 +130,9 @@ div.error {font-size:1.5em; line-height:1.33333em; margin:1.33333em 0;}
 #map_canvas {
    margin-bottom: 20px;
 }
+.map_popup {
+   font-size: 1.5em;
+}
 /* Microformats */
 .hTagcloud {margin-top:2em;}
 .hTagcloud ul {list-style:none; margin-left:0; padding-left:0; line-height:1.8em;}
