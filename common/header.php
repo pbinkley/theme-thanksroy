@@ -21,8 +21,41 @@
     <!-- JavaScripts -->
     <?php echo display_js(); ?>
     
-    <script type="text/javascript">
+    
+    <!-- from https://google-developers.appspot.com/maps/documentation/javascript/examples/geocoding-simple -->
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+      var geocoder;
+      var map = null;
+      
+      function initialize() {
+        geocoder = new google.maps.Geocoder();
+      }
 
+      function codeAddress(address) {
+        //var address = document.getElementById('address').value;
+        if (geocoder == null)
+          initialize();
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            var mapOptions = {
+              zoom: 10,
+              center: results[0].geometry.location,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+          } else {
+//            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+    </script>
+    <script type="text/javascript">
+// wallandbinkley.com Google Analytics id
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-1733464-1']);
   _gaq.push(['_trackPageview']);

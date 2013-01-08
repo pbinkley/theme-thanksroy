@@ -7,7 +7,7 @@
         <li id="next-item" class="next"><?php echo link_to_next_item(); ?></li>
     </ul>
 
-    <h1><?php echo item('Dublin Core', 'Title'); ?></h1>
+    <h1>"<?php echo item('Dublin Core', 'Title'); ?>"</h1>
 
     <!-- The following returns all of the files associated with an item. -->
     <div id="itemfiles" class="element">
@@ -23,8 +23,18 @@
     <?php endif; ?>
 
     <!-- The following prints a list of all tags associated with the item -->
-    <?php echo custom_show_item_metadata(); ?>
+    <?php echo rcb_custom_show_item_metadata(); ?>
 
+   <!-- this is where maps will go -->
+   <?php $coverage = item('Dublin Core', 'Coverage', array('delimiter' => ', ')); 
+      if ($coverage != ''):
+   ?>
+   <div id="map_canvas" style="width: 500px; height: 300px"></div>
+   <script type="text/javascript">
+      codeAddress("<? echo $coverage; ?>");
+      </script>
+   <?php endif; ?>
+   
     <?php if (item_has_tags()): ?>
     <div id="item-tags" class="element">
         <h3><?php echo __('Tags'); ?></h3>
