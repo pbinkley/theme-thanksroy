@@ -29,20 +29,12 @@
    <?php 
       $coverage = item('Dublin Core', 'Coverage', array('delimiter' => '|')); 
       if ($coverage != ''):
-         $covcount = 0;
-         $coverages = explode("|", $coverage);
-         
-         reset($coverages);
-         while (list(, $value) = each($coverages)):
-            $covcount = $covcount + 1;
-            $mapname = "map_canvas_" . $covcount;
    ?>
-   <div id="<?php echo $mapname; ?>" style="width: 500px; height: 300px"></div>
+   <div id="map_canvas" style="width: 500px; height: 300px"></div>
    <script type="text/javascript"> 
-      codeAddress("<?php echo $mapname; ?>", "<?php echo $value; ?>");
+      codeAddress("<?php echo $coverage; ?>");
       </script>
    <?php 
-         endwhile;
       endif; ?>
    
     <?php if (item_has_tags()): ?>

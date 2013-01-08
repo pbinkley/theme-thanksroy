@@ -25,29 +25,39 @@
     <!-- from https://google-developers.appspot.com/maps/documentation/javascript/examples/geocoding-simple -->
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
-      var geocoder;
-      
-      function codeAddress(mapdiv, address) {
-        if (geocoder == null)
-          geocoder = new google.maps.Geocoder();
-        geocoder.geocode( { 'address': address}, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            var mapOptions = {
-              zoom: 10,
-              center: results[0].geometry.location,
+      function codeAddress(address) {
+          var mapOptions = {
               mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-            var map = new google.maps.Map(document.getElementById(mapdiv), mapOptions);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-          } else {
-//            alert('Geocode was not successful for the following reason: ' + status);
           }
-        });
+          var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+          var bounds = new google.maps.LatLngBounds();
+
+          var geocoder = new google.maps.Geocoder();
+          var locations = address.split("|");
+          for (var i = 0; i < locations.length; i++) {
+            geocoder.geocode( { 'address': locations[i]}, function(results, status) {
+               if (status == google.maps.GeocoderStatus.OK) {
+                  var marker = new google.maps.Marker({
+                     map: map,
+                     position: results[0].geometry.location
+                  });
+                  bounds.extend(results[0].geometry.location);
+               } else {
+//            alert('Geocode was not successful for the following reason: ' + status);
+               }
+               if (locations.length == 1) {
+                  // one marker, so set center and zoom level
+                  map.setCenter(results[0].geometry.location);
+                  map.setZoom(10);
+               } else {
+                  // multiple markers, so allow map to set center and zoom level
+                  map.fitBounds(bounds);
+               }
+            });
+        }
       }
     </script>
+    
     <script type="text/javascript">
 // wallandbinkley.com Google Analytics id
   var _gaq = _gaq || [];
