@@ -19,6 +19,7 @@
     display_css(); 
     ?>
     <!-- JavaScripts -->
+    <?php queue_js('maps'); ?>
     <?php echo display_js(); ?>
     
     
