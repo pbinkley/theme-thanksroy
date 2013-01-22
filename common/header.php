@@ -71,6 +71,12 @@
       }
     </script>
     
+    <?php 
+      $user = current_user();
+      if ($user)
+         echo "<!-- user role: " . $user->getRoleId() . ", so no GA -->\n";
+      else {
+    ?>
     <script type="text/javascript">
 // wallandbinkley.com Google Analytics id
   var _gaq = _gaq || [];
@@ -84,6 +90,7 @@
   })();
 
 </script>
+<?php } ?>
 </head>
 <?php echo body_tag(array('id' => @$bodyid, 'class' => @$bodyclass)); ?>
     <?php plugin_body(); ?>
