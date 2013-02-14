@@ -7,7 +7,7 @@
         <li id="next-item" class="next"><?php echo link_to_next_item(); ?></li>
     </ul>
 
-    <h1>"<?php echo item('Dublin Core', 'Title'); ?>"</h1>
+    <h1><?php echo item('Dublin Core', 'Title'); ?></h1>
 
     <!-- The following returns all of the files associated with an item. -->
     <div id="itemfiles" class="element">
