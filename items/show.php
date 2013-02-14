@@ -7,6 +7,21 @@
         <li id="next-item" class="next"><?php echo link_to_next_item(); ?></li>
     </ul>
 
+	<?php
+		$files = $item->Files;
+		set_current_file($files[0]);
+		$fileuri = item_file('uri');
+	?>
+    <div id="itemthumb" class="element">
+        <div class="element-text">
+        	<a href="<?php echo $fileuri;?>">
+        	<?php echo item_thumbnail(); ?>
+        	<br/>
+        	Download full image
+        	</a>
+        </div>
+    </div>
+
     <h1><?php echo item('Dublin Core', 'Title'); ?></h1>
 
     <!-- The following returns all of the files associated with an item. -->

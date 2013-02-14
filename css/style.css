@@ -161,6 +161,15 @@ div.error {font-size:1.5em; line-height:1.33333em; margin:1.33333em 0;}
 /* == Header == */
 #site-title {margin-bottom:0; font-size:4em; margin-left:48px; padding:1em 0;}
     #site-title a {text-decoration:none;}
+#itemthumb {
+	float: right;
+	padding: 1em;
+	border: 1px solid black;
+	margin-left: 1em;
+}
+#itemfiles {
+	clear: both;
+}
 
 /* == Content == */
 #content {background:#fff url("../images/horizontal-stripe.gif") top left repeat-x;padding:54px 48px 0; margin-bottom: 48px; overflow:hidden; zoom:1;}
@@ -186,7 +195,7 @@ div.error {font-size:1.5em; line-height:1.33333em; margin:1.33333em 0;}
 	 * .two-col-secondary - Two columns, secondary is wider
 	 **/
 	
-	#primary {float:left; width: 50%;}
+	#primary {float:left; width: 75%;}
 	#secondary {float:right; width: 22%;}
 	.two-col #primary {width: 35%;}
 	.two-col #secondary {width: 35%; margin-left: 1em;}
